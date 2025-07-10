@@ -1,350 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محول الصور الاحترافي - تحويل الصور إلى جميع الصيغ</title>
-    <meta name="description" content="محول صور احترافي مجاني لتحويل الصور بين جميع الصيغ الشائعة مثل JPG, PNG, WEBP, BMP وأكثر">
-    <meta name="keywords" content="تحويل صور, محول صور, JPG, PNG, WEBP, BMP, تحويل صيغ الصور">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="enhanced-ui.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔄%3C/text%3E%3C/svg%3E">
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h2>جاري تحميل محول الصور...</h2>
-        </div>
-    </div>
-
-    <!-- Background Elements -->
-    <div class="background-elements">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="floating-shape shape-4"></div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <i class="fas fa-exchange-alt brand-icon"></i>
-                <span class="brand-text">محول الصور</span>
-            </div>
-            <div class="nav-links">
-                <a href="#features" class="nav-link">المميزات</a>
-                <a href="#formats" class="nav-link">الصيغ المدعومة</a>
-                <a href="#about" class="nav-link">حول</a>
-            </div>
-            <button class="theme-toggle" id="theme-toggle">
-                <i class="fas fa-moon"></i>
-            </button>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="title-gradient">محول الصور الاحترافي</span>
-                    <span class="title-subtitle">تحويل سريع وآمن لجميع صيغ الصور</span>
-                </h1>
-                <p class="hero-description">
-                    حول صورك بين جميع الصيغ الشائعة بسرعة وجودة عالية. 
-                    دون الحاجة لرفع الملفات - كل شيء يتم في متصفحك بأمان تام.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">8+</span>
-                        <span class="stat-label">صيغ مدعومة</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">آمن ومجاني</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">⚡</span>
-                        <span class="stat-label">سريع جداً</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Converter Section -->
-        <section class="converter-section">
-            <div class="converter-container">
-                <!-- Upload Area -->
-                <div class="upload-area" id="upload-area">
-                    <div class="upload-content">
-                        <div class="upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <h3 class="upload-title">اسحب وأفلت صورك هنا</h3>
-                        <p class="upload-description">أو انقر لتصفح الملفات</p>
-                        <button class="upload-btn" id="upload-btn">
-                            <i class="fas fa-folder-open"></i>
-                            اختر الصور
-                        </button>
-                        <input type="file" id="file-input" multiple accept="image/*" hidden>
-                        <div class="upload-formats">
-                            <span>الصيغ المدعومة:</span>
-                            <div class="format-tags">
-                                <span class="format-tag">JPG</span>
-                                <span class="format-tag">PNG</span>
-                                <span class="format-tag">GIF</span>
-                                <span class="format-tag">BMP</span>
-                                <span class="format-tag">WEBP</span>
-                                <span class="format-tag">TIFF</span>
-                                <span class="format-tag">SVG</span>
-                                <span class="format-tag">ICO</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Preview Area -->
-                <div class="preview-area" id="preview-area" style="display: none;">
-                    <div class="preview-header">
-                        <h3>الصور المرفوعة</h3>
-                        <button class="clear-all-btn" id="clear-all-btn">
-                            <i class="fas fa-trash"></i>
-                            مسح الكل
-                        </button>
-                    </div>
-                    <div class="preview-grid" id="preview-grid"></div>
-                </div>
-
-                <!-- Conversion Controls -->
-                <div class="conversion-controls" id="conversion-controls" style="display: none;">
-                    <div class="controls-header">
-                        <h3>إعدادات التحويل</h3>
-                    </div>
-                    <div class="controls-content">
-                        <div class="control-group">
-                            <label for="output-format">صيغة الإخراج:</label>
-                            <select id="output-format" class="format-select">
-                                <option value="jpeg">JPEG</option>
-                                <option value="png">PNG</option>
-                                <option value="webp">WEBP</option>
-                                <option value="bmp">BMP</option>
-                                <option value="tiff">TIFF</option>
-                                <option value="ico">ICO</option>
-                            </select>
-                        </div>
-                        <div class="control-group">
-                            <label for="quality-slider">جودة الصورة: <span id="quality-value">90</span>%</label>
-                            <input type="range" id="quality-slider" min="10" max="100" value="90" class="quality-slider">
-                        </div>
-                        <div class="control-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="resize-checkbox">
-                                <span class="checkmark"></span>
-                                تغيير حجم الصورة
-                            </label>
-                        </div>
-                        <div class="resize-options" id="resize-options" style="display: none;">
-                            <div class="resize-inputs">
-                                <input type="number" id="width-input" placeholder="العرض" min="1">
-                                <span>×</span>
-                                <input type="number" id="height-input" placeholder="الارتفاع" min="1">
-                                <button class="maintain-ratio-btn" id="maintain-ratio-btn" title="الحفاظ على النسبة">
-                                    <i class="fas fa-link"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="convert-btn" id="convert-btn">
-                            <i class="fas fa-magic"></i>
-                            تحويل الصور
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Results Area -->
-                <div class="results-area" id="results-area" style="display: none;">
-                    <div class="results-header">
-                        <h3>النتائج</h3>
-                        <button class="download-all-btn" id="download-all-btn">
-                            <i class="fas fa-download"></i>
-                            تحميل الكل
-                        </button>
-                    </div>
-                    <div class="results-grid" id="results-grid"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features-section" id="features">
-            <div class="section-header">
-                <h2 class="section-title">لماذا تختار محولنا؟</h2>
-                <p class="section-description">مميزات متقدمة لتجربة تحويل مثالية</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="feature-title">آمن 100%</h3>
-                    <p class="feature-description">جميع العمليات تتم في متصفحك دون رفع الملفات لأي خادم</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title">سرعة فائقة</h3>
-                    <p class="feature-description">تحويل فوري للصور باستخدام تقنيات متقدمة</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3 class="feature-title">جودة عالية</h3>
-                    <p class="feature-description">تحكم كامل في جودة الصورة وحجمها</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="feature-title">متجاوب</h3>
-                    <p class="feature-description">يعمل بشكل مثالي على جميع الأجهزة</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3 class="feature-title">تحويل متعدد</h3>
-                    <p class="feature-description">حول عدة صور في نفس الوقت</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <h3 class="feature-title">مجاني تماماً</h3>
-                    <p class="feature-description">بدون قيود أو رسوم خفية</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Formats Section -->
-        <section class="formats-section" id="formats">
-            <div class="section-header">
-                <h2 class="section-title">الصيغ المدعومة</h2>
-                <p class="section-description">ندعم جميع صيغ الصور الشائعة</p>
-            </div>
-            <div class="formats-grid">
-                <div class="format-item">
-                    <div class="format-icon">📸</div>
-                    <h4>JPEG/JPG</h4>
-                    <p>الصيغة الأكثر شيوعاً للصور</p>
-                </div>
-                <div class="format-item">
-                    <div class="format-icon">🖼️</div>
-                    <h4>PNG</h4>
-                    <p>صيغة مثالية للصور الشفافة</p>
-                </div>
-                <div class="format-item">
-                    <div class="format-icon">🎭</div>
-                    <h4>GIF</h4>
-                    <p>للصور المتحركة والرسوم</p>
-                </div>
-                <div class="format-item">
-                    <div class="format-icon">🎨</div>
-                    <h4>BMP</h4>
-                    <p>صيغة Windows الكلاسيكية</p>
-                </div>
-                <div class="format-item">
-                    <div class="format-icon">⚡</div>
-                    <h4>WEBP</h4>
-                    <p>صيغة حديثة عالية الكفاءة</p>
-                </div>
-                <div class="format-item">
-                    <div class="format-icon">📄</div>
-                    <h4>TIFF</h4>
-                    <p>للصور عالية الجودة</p>
-                </div>
-                <div class="format-item">
-                    <div class="format-icon">🔗</div>
-                    <h4>SVG</h4>
-                    <p>رسوم متجهة قابلة للتكبير</p>
-                </div>
-                <div class="format-item">
-                    <div class="format-icon">🏠</div>
-                    <h4>ICO</h4>
-                    <p>أيقونات Windows</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer" id="about">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>محول الصور الاحترافي</h3>
-                <p>أداة مجانية وآمنة لتحويل الصور بين جميع الصيغ الشائعة</p>
-            </div>
-            <div class="footer-section">
-                <h4>روابط سريعة</h4>
-                <ul>
-                    <li><a href="#features">المميزات</a></li>
-                    <li><a href="#formats">الصيغ المدعومة</a></li>
-                    <li><a href="#about">حول</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>تواصل معنا</h4>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 محول الصور الاحترافي. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
-    <!-- Toast Notifications -->
-    <div class="toast-container" id="toast-container"></div>
-
-    <!-- Progress Modal -->
-    <div class="modal" id="progress-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>جاري التحويل...</h3>
-            </div>
-            <div class="modal-body">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-                <p class="progress-text" id="progress-text">0% مكتمل</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-    <script src="advanced-converter.js"></script>
-    <script src="interactive-effects.js"></script>
-</body>
-</html>
-
