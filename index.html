@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>موقعي البسيط</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .section {
+      padding: 20px;
+    }
+    h2 {
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+      color: #0ff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .item {
+      background: #1a1a1a;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px #000;
+      text-align: center;
+    }
+    img, video {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    pre {
+      white-space: pre-wrap;
+      background: #000;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>📦 محتوى الموقع</header>
+
+  <div class="section">
+    <h2>🖼️ صور</h2>
+    <div class="grid">
+      {% for img in images %}
+        <div class="item">
+          <img src="{{ img }}" alt="صورة">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎞️ فيديوهات</h2>
+    <div class="grid">
+      {% for vid in videos %}
+        <div class="item">
+          <video controls>
+            <source src="{{ vid }}" type="video/mp4">
+          </video>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📝 نصوص</h2>
+    <div class="grid">
+      {% for text in texts %}
+        <div class="item">
+          <pre>{{ text }}</pre>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📁 ملفات</h2>
+    <div class="grid">
+      {% for file in files %}
+        <div class="item">
+          <a href="{{ file }}" download>تحميل الملف</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</body>
+</html>
